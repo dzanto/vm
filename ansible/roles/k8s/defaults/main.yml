@@ -1,0 +1,23 @@
+---
+# defaults file for k8s
+kernel_modules:
+  - br_netfilter
+  # - ip6_udp_tunnel
+  # - ip_set
+  # - ip_set_hash_ip
+  # - ip_set_hash_net
+  # - iptable_mangle
+  # - iptable_raw
+  # - nf_conntrack
+  # - nf_nat
+  # - udp_tunnel
+  # - veth
+  # - vxlan
+  # - xt_comment
+  # - xt_mark
+  # - xt_multiport
+  # - xt_nat
+  # - xt_recent
+  # - xt_set
+  # - xt_statistic
+  # - xt_tcpudp

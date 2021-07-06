@@ -1,0 +1,28 @@
+---
+- name: Disable SWAP
+  shell: swapoff -a
+  args:
+    executable: /bin/bash
+ 
+- name: Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+.*)$'
+    replace: '# \1'
+
+- name: Load kernel modules for RKE
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ kernel_modules }}"
+
+- name: update kernel settings
+  sysctl:
+    name: '{{ item }}'
+    value: '1'
+    state: present
+    reload: yes
+    sysctl_file: /etc/sysctl.conf
+  with_items:
+    - net.bridge.bridge-nf-call-iptables
+    - net.bridge.bridge-nf-call-ip6tables

@@ -1,0 +1,1 @@
+ANSIBLE_CONFIG=../ansible.cfg ansible-playbook ../playbooks/runrole/runrole.yml -b -e "hosts=myservers role=k8s"
